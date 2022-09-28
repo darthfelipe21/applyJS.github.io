@@ -1,5 +1,5 @@
 class Products {
-    constructor(id, name, category, brand, color, stock, price) {
+    constructor(id, name, category, brand, color, stock, price, image) {
             this.id = id;
             this.name = name;
             this.category = category;
@@ -7,6 +7,7 @@ class Products {
             this.color = color;
             this.stock = stock;
             this.price = price;
+            this.image = image;
     }
 }
 let products = []; 
@@ -18,7 +19,8 @@ products.push (new Products(
     "Rawling",
     "Negro",
     3,
-    100
+    100,
+    "/multimedia/guante-baseball.jpg",
 ));
 products.push (new Products(
     products.length + 1,
@@ -27,7 +29,8 @@ products.push (new Products(
     "Wilson",
     "Marron",
     5,
-    60
+    60,
+    "/multimedia/balon-nfl.jpg",
 ));
 products.push (new Products(
     products.length + 1,
@@ -36,7 +39,8 @@ products.push (new Products(
     "Wilson",
     "Azul/Naranja",
     7,
-    120
+    120,
+    "/multimedia/raqueta-tenis.jpg",
 ));
 products.push (new Products(
     products.length + 1,
@@ -45,7 +49,8 @@ products.push (new Products(
     "Mclaren",
     "Naranja",
     4,
-    30
+    30,
+    "/multimedia/gorra-f1.jpg",
 ));
 products.push (new Products(
     products.length + 1,
@@ -54,7 +59,8 @@ products.push (new Products(
     "ADIDAS",
     "Edición Champions League",
     2,
-    90
+    90,
+    "/multimedia/balon-futbol.jpg",
 ));
 products.push (new Products(
     products.length + 1,
@@ -63,7 +69,8 @@ products.push (new Products(
     "Nike",
     "Chicago Bulls",
     6,
-    50
+    50,
+    "/multimedia/jersey-nba.jpg",
 ));
 
 let repeat = confirm (`¿Desea comprar alguno de los siguientes productos?
@@ -108,4 +115,30 @@ const message = () =>{
 }
 
 cart();
+
+
+
+let identifier = document.getElementById("identifier");
+let person = prompt("Bienvenido a CNF, ingrese su nombre");
+
+if (person === null){
+    identifier.innerHTML = `Bienvenido`;
+}else if (person != ""){
+    identifier.innerHTML = `Bienvenido ${person}`;
+}else{
+    identifier.innerHTML = `Bienvenido`;
+}
+
+products.forEach(everyProduct =>{
+    let container = document.getElementById("container");
+    let productInsert = document.createElement("div");
+    productInsert.innerHTML =`
+    <img src ="${everyProduct.image}>
+    <h2>${everyProduct.name}</h2>
+    <span>Precio: ${everyProduct.price}</span>
+    `
+    container.append(productInsert)
+})
+
+
 
