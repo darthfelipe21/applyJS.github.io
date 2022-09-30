@@ -10,7 +10,7 @@ class Products {
             this.image = image;
     }
 }
-let products = []; 
+const products = []; 
 
 products.push (new Products(
     products.length + 1,
@@ -133,12 +133,36 @@ products.forEach(everyProduct =>{
     let container = document.getElementById("container");
     let productInsert = document.createElement("div");
     productInsert.innerHTML =`
-    <img src ="${everyProduct.image}>
-    <h2>${everyProduct.name}</h2>
-    <span>Precio: ${everyProduct.price}</span>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="${everyProduct.image}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${everyProduct.name}</h5>
+            <p class="card-text">${everyProduct.price}</p>
+            <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
     `
     container.append(productInsert)
 })
 
-
+let searching = document.getElementById("searching");
+let search = document.getElementById("search");
+search.addEventListener("submit", (e) =>{
+    e.preventDefault();
+    let inputs= e.target.children;
+    searching.innerHTML="";
+    let productos = products.find(item => item.name === inputs[0].value);
+    let  div2 = document.createElement("div");
+    div2.innerHTML = `
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="${productos.image}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${productos.name}</h5>
+            <p class="card-text">${productos.price}</p>
+            <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
+    `;
+    searching.append(div2);
+})
 

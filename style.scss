@@ -82,6 +82,7 @@ header{
     background-color: $color4;
     position:fixed;
     width: 100%;
+    z-index: 100;
 }
 .header{
     margin-left: 200px;
@@ -200,6 +201,13 @@ header{
         text-align: left;
     }
 }
+.productImage{
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
 .titulo3{
     margin: auto;
 }
@@ -221,10 +229,14 @@ header{
     background-color: #C8102E;
 }
 .tienda{
+    margin-bottom: 50px;
     h1{
         text-align: center;
         padding: 30px;
     }
+.buscar{
+    margin-top: 200px;
+}
 }
 footer{
     height: auto;

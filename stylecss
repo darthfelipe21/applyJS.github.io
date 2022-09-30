@@ -157,10 +157,6 @@ header {
   grid-template-rows: 1fr 1fr;
 }
 
-.search {
-  margin: auto;
-}
-
 .productosTienda {
   text-align: center;
   margin: auto;
@@ -235,6 +231,9 @@ header {
   text-align: center;
   padding: 30px;
 }
+.tienda .buscar {
+  margin-top: 200px;
+}
 
 footer {
   height: auto;
@@ -297,4 +296,4 @@ footer i {
   text-transform: uppercase;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=stylecss.map */
