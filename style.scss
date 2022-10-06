@@ -234,10 +234,22 @@ header{
         text-align: center;
         padding: 30px;
     }
+}
+.card{
+    margin-bottom: 50px;
+}
+#searching{
+    margin-left: 200px;
+}
 .buscar{
-    margin-top: 200px;
+    padding: 0 50px 50px 0;
+    margin-left: 200px;
 }
+.emptyCart{
+    margin-bottom: 50px;
+    margin-left: 200px;
 }
+
 footer{
     height: auto;
     width: 100%;
@@ -293,4 +305,7 @@ footer{
         font-size: 15px;
         text-transform: uppercase;
     }
+}
+.cartPage{
+    padding-top: 100px;
 }

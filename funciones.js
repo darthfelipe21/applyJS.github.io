@@ -1,3 +1,5 @@
+//Creaccion de productos
+
 class Products {
     constructor(id, name, category, brand, color, stock, price, image) {
             this.id = id;
@@ -83,10 +85,12 @@ let repeat = confirm (`¿Desea comprar alguno de los siguientes productos?
 let counter = 0; 
 let total = 0;
 
+
+//Comprar Productos
 function cart (){
     while (repeat){
-            let productName = Number(prompt("Ingrese el numero del producto que esta buscando"));
-            if (productName >=1 &&  productName <=6){
+        let productName = Number(prompt("Ingrese el numero del producto que esta buscando"));
+        if (productName >=1 &&  productName <=6){
             let findProduct = products.filter (search => search.id === productName);
             findProduct.forEach ((search)=>{
             alert (`El producto ${search.name}
@@ -116,7 +120,7 @@ const message = () =>{
 
 cart();
 
-
+//Mostrar productos desde el Javascript
 
 let identifier = document.getElementById("identifier");
 let person = prompt("Bienvenido a CNF, ingrese su nombre");
@@ -145,6 +149,8 @@ products.forEach(everyProduct =>{
     container.append(productInsert)
 })
 
+//Buscador de productos
+
 let searching = document.getElementById("searching");
 let search = document.getElementById("search");
 search.addEventListener("submit", (e) =>{
@@ -165,4 +171,44 @@ search.addEventListener("submit", (e) =>{
     `;
     searching.append(div2);
 })
+
+
+//LocalStorage y Vaciar Carrito
+
+localStorage.setItem("shopping", JSON.stringify(products));
+
+let container2 = document.getElementById("container2");
+let button = document.getElementById("button");
+
+let carro = [];
+let carroStorage = JSON.parse(localStorage.getItem("carrito"));
+
+if(carroStorage){
+    carro = carroStorage;
+}
+
+carro.forEach(item => {
+    let div = document.createElement("div");
+    div.innerHTML = `
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="${item.image}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text">${item.price}</p>
+            <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+    </div>
+`;
+
+    container2.append(div);
+});
+
+button.addEventListener("click", () => {
+    localStorage.clear();
+    container2.innerHTML = "";
+    alert("Carrito Vacio");
+})
+
+
+
 

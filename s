@@ -231,23 +231,8 @@ header {
   text-align: center;
   padding: 30px;
 }
-
-.card {
-  margin-bottom: 50px;
-}
-
-#searching {
-  margin-left: 200px;
-}
-
-.buscar {
-  padding: 0 50px 50px 0;
-  margin-left: 200px;
-}
-
-.emptyCart {
-  margin-bottom: 50px;
-  margin-left: 200px;
+.tienda .buscar {
+  margin-top: 200px;
 }
 
 footer {
@@ -311,8 +296,4 @@ footer i {
   text-transform: uppercase;
 }
 
-.cartPage {
-  padding-top: 100px;
-}
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=s.map */
