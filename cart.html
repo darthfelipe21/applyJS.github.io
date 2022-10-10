@@ -30,19 +30,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">INICIO</a>
+                                <a class="nav-link active" aria-current="page" href="#">INICIO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="about.html">¿QUÉ ES CNF?</a>
+                                <a class="nav-link" aria-current="page" href="#">PRODUCTOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="episodios.html">EPISODIOS</a>
+                                <a class="nav-link" aria-current="page" href="/cart.html">CARRITO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="Videos.Html">VIDEOS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="contacto.html">CONTACTO</a>
+                                <a class="nav-link" aria-current="page" href="#">CONTACTO</a>
                             </li>
                         </ul>
                     </div>
@@ -55,20 +52,69 @@
             </nav>
         </div>
     </header>
-    <section class="cartPage">
-    <div class="tienda">
-        <h1>CARRITO</h1>
-        <form id="search" class="buscar">
-            <input type = "text" />
-            <input type="submit" value="Buscar" />
-        </form> 
-        <button id="button" class="emptyCart">Vaciar carro</button>
-        <div id="container2"></div>
-        <div id="searching"></div>
-        <section id="container" class="seccion2">
-        </section>
+    <div class="container" id="spaceCart">
+        <h4>Carrito de compras</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Item</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Acción</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody id="items"></tbody>
+            <tfoot>
+                <tr id="footer">
+                    <th scope="row" colspan="5">No hay nada en el carrito</th>
+                </tr>
+            </tfoot>
+        </table>
+        <h4>Cards</h4>
+        <div class="row" id="cards"></div>
     </div>
-    </section>
+
+    <template id="template-footer">
+        <th scope="row" colspan="2">Total productos</th>
+        <td>10</td>
+        <td>
+            <button class="btn btn-danger btn-sm" id="empty-cart">
+                vaciar todo
+            </button>
+        </td>
+        <td class="font-weight-bold">$ <span>5000</span></td>
+    </template>
+
+    <template id="template-carrito">
+        <tr>
+            <th scope="row">id</th>
+            <td>Café</td>
+            <td>1</td>
+            <td>
+                <button class="btn btn-info btn-sm">
+                    +
+                </button>
+                <button class="btn btn-danger btn-sm">
+                    -
+                </button>
+            </td>
+            <td>$ <span>500</span></td>
+        </tr>
+    </template>
+
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+            <div class="card">
+                <img src="" alt="" class="card-img-top">
+                <div class="card-body">
+                    <h5>Titulo</h5>
+                    <p>precio</p>
+                    <button class="btn btn-dark">Comprar</button>
+                </div>
+            </div>
+        </div>
+    </template>
     <footer style="background-color: #212529;">
         <section id="seccionpie">
             <div class="pie1">

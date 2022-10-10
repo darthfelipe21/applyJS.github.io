@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Guante de Baseball",
+        "stock": 4,
+        "price": 100,
+        "image": "/multimedia/guante-baseball.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Raqueta de Tenis",
+        "stock": 5,
+        "price": 150,
+        "image": "/multimedia/raqueta-tenis.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Gorra F1",
+        "stock": 5,
+        "price": 80,
+        "image": "/multimedia/gorra-f1.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Balón de Futbol",
+        "stock": 2,
+        "price": 120,
+        "image": "/multimedia/balon-futbol.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Jersey NBA",
+        "stock": 1,
+        "price": 100,
+        "image": "/multimedia/jersey-nba.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Balón de NFL",
+        "stock": 7,
+        "price": 180,
+        "image": "/multimedia/balon-nfl.jpg"
+    }
+]

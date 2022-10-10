@@ -1,214 +1,138 @@
-//Creaccion de productos
+const cards = document.getElementById('cards')
+const items = document.getElementById('items')
+const footer = document.getElementById('footer')
+const templateCard = document.getElementById('template-card').content
+const templateFooter = document.getElementById('template-footer').content
+const templateCarrito = document.getElementById('template-carrito').content
+const fragment = document.createDocumentFragment()
 
-class Products {
-    constructor(id, name, category, brand, color, stock, price, image) {
-            this.id = id;
-            this.name = name;
-            this.category = category;
-            this.brand = brand;
-            this.color = color;
-            this.stock = stock;
-            this.price = price;
-            this.image = image;
+let shoppingCart = {};
+
+document.addEventListener('DOMContentLoaded', () =>{
+    fetchData()
+    if(localStorage.getItem('cart')){
+        shoppingCart = JSON.parse(localStorage.getItem('cart'));
+        showCart();
     }
-}
-const products = []; 
-
-products.push (new Products(
-    products.length + 1,
-    "guante de baseball",
-    "Baseball",
-    "Rawling",
-    "Negro",
-    3,
-    100,
-    "/multimedia/guante-baseball.jpg",
-));
-products.push (new Products(
-    products.length + 1,
-    "balon de nfl",
-    "Futbol Americano",
-    "Wilson",
-    "Marron",
-    5,
-    60,
-    "/multimedia/balon-nfl.jpg",
-));
-products.push (new Products(
-    products.length + 1,
-    "raqueta de tenis",
-    "Tenis",
-    "Wilson",
-    "Azul/Naranja",
-    7,
-    120,
-    "/multimedia/raqueta-tenis.jpg",
-));
-products.push (new Products(
-    products.length + 1,
-    "gorra f1",
-    "Formula 1",
-    "Mclaren",
-    "Naranja",
-    4,
-    30,
-    "/multimedia/gorra-f1.jpg",
-));
-products.push (new Products(
-    products.length + 1,
-    "balon de futbol",
-    "Champions League",
-    "ADIDAS",
-    "Edición Champions League",
-    2,
-    90,
-    "/multimedia/balon-futbol.jpg",
-));
-products.push (new Products(
-    products.length + 1,
-    "Jersey NBA",
-    "Basketball",
-    "Nike",
-    "Chicago Bulls",
-    6,
-    50,
-    "/multimedia/jersey-nba.jpg",
-));
-
-let repeat = confirm (`¿Desea comprar alguno de los siguientes productos?
-1= Guante de Baseball
-2= Balon de NFL
-3= Raqueta de Tenis
-4= Gorra F1
-5= Balon de Futbol
-6= Jersey NBA`);
-let counter = 0; 
-let total = 0;
-
-
-//Comprar Productos
-function cart (){
-    while (repeat){
-        let productName = Number(prompt("Ingrese el numero del producto que esta buscando"));
-        if (productName >=1 &&  productName <=6){
-            let findProduct = products.filter (search => search.id === productName);
-            findProduct.forEach ((search)=>{
-            alert (`El producto ${search.name}
-            tiene un valor de: $${search.price}`);
-            counter ++;
-            total = plus (search.price, total);       
-            repeat = confirm (`¿Quiere seguir comprando?
-1= Guante de Baseball
-2= Balon de NFL
-3= Raqueta de Tenis
-4= Gorra F1
-5= Balon de Futbol
-6= Jersey NBA`);
-            });
-    }else {
-            alert("No ingreso un producto valido")
-    }
-}
-    message();
-}
-
-const plus = (a,b) =>{return a+b};
-
-const message = () =>{
-    alert (`El total a cancelar: $${total} por la cantidad de ${counter} productos`);
-}
-
-cart();
-
-//Mostrar productos desde el Javascript
-
-let identifier = document.getElementById("identifier");
-let person = prompt("Bienvenido a CNF, ingrese su nombre");
-
-if (person === null){
-    identifier.innerHTML = `Bienvenido`;
-}else if (person != ""){
-    identifier.innerHTML = `Bienvenido ${person}`;
-}else{
-    identifier.innerHTML = `Bienvenido`;
-}
-
-products.forEach(everyProduct =>{
-    let container = document.getElementById("container");
-    let productInsert = document.createElement("div");
-    productInsert.innerHTML =`
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="${everyProduct.image}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">${everyProduct.name}</h5>
-            <p class="card-text">${everyProduct.price}</p>
-            <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-    </div>
-    `
-    container.append(productInsert)
-})
-
-//Buscador de productos
-
-let searching = document.getElementById("searching");
-let search = document.getElementById("search");
-search.addEventListener("submit", (e) =>{
-    e.preventDefault();
-    let inputs= e.target.children;
-    searching.innerHTML="";
-    let productos = products.find(item => item.name === inputs[0].value);
-    let  div2 = document.createElement("div");
-    div2.innerHTML = `
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="${productos.image}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">${productos.name}</h5>
-            <p class="card-text">${productos.price}</p>
-            <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-    </div>
-    `;
-    searching.append(div2);
-})
-
-
-//LocalStorage y Vaciar Carrito
-
-localStorage.setItem("shopping", JSON.stringify(products));
-
-let container2 = document.getElementById("container2");
-let button = document.getElementById("button");
-
-let carro = [];
-let carroStorage = JSON.parse(localStorage.getItem("carrito"));
-
-if(carroStorage){
-    carro = carroStorage;
-}
-
-carro.forEach(item => {
-    let div = document.createElement("div");
-    div.innerHTML = `
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="${item.image}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
-            <p class="card-text">${item.price}</p>
-            <a href="#" class="btn btn-primary">Comprar</a>
-        </div>
-    </div>
-`;
-
-    container2.append(div);
 });
 
-button.addEventListener("click", () => {
-    localStorage.clear();
-    container2.innerHTML = "";
-    alert("Carrito Vacio");
-})
+cards.addEventListener('click', e =>{
+    addCarrito(e);
+});
 
+items.addEventListener('click', e =>{
+    btnAumentarDisminuir(e)
+});
+
+const fetchData = async()=>{
+    try{
+        const res = await fetch('api.json');
+        const data = await res.json();
+        showCard(data);
+    }catch (error) {
+        console.log(error);
+    }
+}
+
+const showCard = data =>{
+    data.forEach(products => {
+        // console.log(products);
+        templateCard.querySelector('h5').textContent = products.name;
+        templateCard.querySelector('p').textContent = products.price;
+        templateCard.querySelector('img').setAttribute('src',products.image);
+        templateCard.querySelector('.btn-dark').dataset.id = products.id;
+
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone);
+    });
+    cards.appendChild(fragment);
+}
+
+const addCarrito = e =>{
+    if(e.target.classList.contains('btn-dark')){
+        setCart(e.target.parentElement)
+    }
+    e.stopPropagation();
+}
+
+const setCart = objetcs =>{
+    const product={
+        id:objetcs.querySelector('.btn-dark').dataset.id,
+        name:objetcs.querySelector('h5').textContent,
+        price:objetcs.querySelector('p').textContent,
+        cantidad:1
+    }
+    if(shoppingCart.hasOwnProperty(product.id)){
+        product.cantidad=shoppingCart[product.id].cantidad+ 1    
+    }
+    console.log(product)
+    shoppingCart[product.id]={...product}
+    showCart();
+
+    localStorage.setItem('cart', JSON.stringify(shoppingCart))
+}
+
+const showCart = () =>{
+    items.innerHTML =''
+    Object.values(shoppingCart).forEach(producto =>{
+        templateCarrito.querySelector('th').textContent = producto.id;
+        templateCarrito.querySelectorAll('td')[0].textContent = producto.name;
+        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad;
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id; 
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id;
+        templateCarrito.querySelector('span').textContent = producto.cantidad * producto.price;
+        const clone = templateCarrito.cloneNode(true);
+        fragment.appendChild(clone);
+    })
+    items.appendChild(fragment);
+
+    showFooter();
+}
+
+const showFooter = () => {
+    footer.innerHTML=''
+    if(Object.keys(shoppingCart).length === 0){
+        footer.innerHTML =`
+        <th scope="row" colspan="5">No hay nada en el carrito</th>
+        `
+        return
+    }
+    const numberCantidad = Object.values(shoppingCart).reduce((acc, {cantidad}) => acc + cantidad, 0)
+    const numberPrice = Object.values(shoppingCart).reduce((acc, {cantidad, price})=> acc + cantidad*price, 0)
+
+    templateFooter.querySelectorAll('td')[0].textContent= numberCantidad
+    templateFooter.querySelector('span').textContent = numberPrice
+
+    const clone = templateFooter.cloneNode(true);
+    fragment.appendChild(clone);
+    footer.appendChild(fragment);
+
+    const empty = document.getElementById('empty-cart');
+    empty.addEventListener('click', () =>{
+        shoppingCart = {};
+        showCart();
+    })
+}
+
+const btnAumentarDisminuir = e =>{
+    if(e.target.classList.contains('btn-info')){
+        const producto = shoppingCart[e.target.dataset.id]
+        producto.cantidad = shoppingCart[e.target.dataset.id].cantidad + 1
+        shoppingCart[e.target.dataset.id] = {...producto}
+        showCart();
+    }
+    if(e.target.classList.contains('btn-danger')){
+        const producto = shoppingCart[e.target.dataset.id]
+        producto.cantidad --
+        if (producto.cantidad === 0) {
+            delete shoppingCart[e.target.dataset.id]
+        } else {
+            shoppingCart[e.target.dataset.id] = {...producto}
+        }
+        showCart()
+}
+e.stopPropagation();
+}
 
 
 
