@@ -112,6 +112,12 @@ const showFooter = () => {
         shoppingCart = {};
         showCart();
     })
+    empty.addEventListener("click", () =>{
+        Swal.fire({
+            icon: 'success',
+            title: 'Carrito Vaciado',
+        })
+    })
 }
 
 const btnAumentarDisminuir = e =>{
@@ -133,6 +139,9 @@ const btnAumentarDisminuir = e =>{
 }
 e.stopPropagation();
 }
+
+
+
 
 
 
